@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rule Engine</title>
+</head>
+<body>
+    <h2>Create a New Rule</h2>
+    <form id="createRuleForm">
+        <input type="text" id="ruleString" placeholder="Enter rule string">
+        <button type="button" onclick="createRule()">Create Rule</button>
+    </form>
+    
+    <h2>Evaluate Rule</h2>
+    <form id="evaluateForm">
+        <input type="text" id="userData" placeholder='{"age": 35, "department": "Sales", "salary": 60000}'>
+        <button type="button" onclick="evaluateRule()">Evaluate</button>
+    </form>
+
+    <script>
+        function createRule() {
+            const ruleString = document.getElementById('ruleString').value;
+            fetch('/create_rule', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ rule_string: ruleString })
+            }).then(response => response.json()).then(data => {
+                alert(data.message);
+            });
+        }
+
+        function evaluateRule() {
+            const userData = JSON.parse(document.getElementById('userData').value);
+            fetch('/evaluate_rule', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_data: userData })
+            }).then(response => response.json()).then(data => {
+                alert("Eligible: " + data.eligible);
+            });
+        }
+    </script>
+</body>
+</html>

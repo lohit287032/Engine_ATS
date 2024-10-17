@@ -1,0 +1,104 @@
+rule_engine/
+│
+├── app.py                  # Main Flask application
+├── ast_module.py           # AST logic and rule evaluation
+├── templates/              # Frontend HTML templates
+│   └── index.html          # Main HTML file
+├── database.db             # SQLite database (if used)
+├── requirements.txt        # Python dependencies
+├── README.md               # Comprehensive documentation
+└── Dockerfile               # (Optional) Docker configuration
+
+# Rule Engine Application
+This project implements a Rule Engine application using Flask, designed to evaluate user eligibility based on rules defined in an Abstract Syntax Tree (AST) format. The application allows for dynamic rule creation, combination, and evaluation against user attributes.
+
+## Features
+- Create and manage rules using a simple UI.
+- Evaluate user eligibility based on defined rules.
+- Store rules in a SQLite database.
+- Combine multiple rules into a single evaluation.
+- Clear and maintainable code structure.
+- (Bonus) Extendable functionality for advanced conditions.
+
+## Technologies Used
+- Python
+- Flask
+- SQLite
+- HTML/CSS/JavaScript for frontend
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <your-repo-url>
+   cd rule_engine
+
+Set up a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+Install the required dependencies:
+pip install -r requirements.txt
+
+Run the application:
+export FLASK_APP=app.py  # On Windows: set FLASK_APP=app.py
+flask run
+
+Access the application at http://127.0.0.1:5000.
+
+#### 6. Dependencies
+
+Create a `requirements.txt` file with your project dependencies:
+
+```plaintext
+Flask==2.0.1
+
+pip freeze > requirements.txt
+
+7. Running with Docker
+# Dockerfile
+FROM python:3.9-slim
+
+WORKDIR /app
+COPY . .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5000
+CMD ["flask", "run", "--host=0.0.0.0"]
+
+## Running with Docker
+
+1. Build the Docker image:
+   ```bash
+   docker build -t rule_engine .
+docker run -p 5000:5000 rule_engine
+
+Access the application at http://127.0.0.1:5000
+
+
+### Step 3: Ensure Functionality and Correctness
+
+1. **Functionality**:
+   - Ensure all API endpoints are functional and return expected responses.
+   - Test user interactions through the UI.
+
+2. **Data Parsing & Calculations**:
+   - Verify that rules are correctly parsed into the AST.
+   - Confirm that rule evaluation against user data works as intended.
+
+3. **Test Cases**:
+   - Implement comprehensive test cases covering various scenarios.
+   - You can use a testing framework like **unittest** or **pytest**.
+
+### Step 4: Code Quality
+
+1. **Clarity**:
+   - Use clear and descriptive variable and function names.
+   - Add comments where necessary to explain complex logic.
+
+2. **Maintainability**:
+   - Organize your code logically with separate modules for different functionalities.
+   - Ensure consistent coding style (e.g., PEP 8 for Python).
+
+http://127.0.0.1:5500/
